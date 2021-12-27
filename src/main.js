@@ -10,12 +10,10 @@ import vuetify from './plugins/vuetify'
 import i18n from './plugins/i18n'
 import '@mdi/font/css/materialdesignicons.css'
 import 'jodit/build/jodit.css'
-//import material-icon scss
-import "font-awesome/css/font-awesome.min.css";
- 
-//defined as global component
-Vue.component('VueFontawesome', require('vue-fontawesome-icon/VueFontawesome.vue').default);
+import VueApexCharts from 'vue-apexcharts'
+Vue.use(VueApexCharts)
 
+Vue.component('apexchart', VueApexCharts)
 Vue.config.productionTip = false
 
 const app = new Vue({

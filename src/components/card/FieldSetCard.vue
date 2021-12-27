@@ -21,19 +21,12 @@ export default {
 </script>
 <style lang="scss" scoped>
 .container {
-  display: flex;
-  box-sizing: border-box;
-  padding: 5%;
-  background-color: #fff;
-  justify-content: space-evenly;
-  align-items: center;
-  position: relative;
+  background-color: #fafbfd;
+  padding: 12px 0;
+  padding-bottom: 0px;
 }
 
 .euiCard {
-  padding-left: 2em;
-  padding-right: 2em;
-  padding-top: 1em;
   border: 0;
   border: 1px solid #d3dae6;
   -webkit-border-radius: 5px;
