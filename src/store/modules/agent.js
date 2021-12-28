@@ -9,6 +9,8 @@ const state = {
   hotfixes: [],
   packages: [],
   processes: [],
+  os: {},
+  hardware: {}
 }
 
 const getters = {
@@ -19,7 +21,10 @@ const getters = {
   netaddr: (state) => state.netaddr,
   hotfixes: (state) => state.hotfixes,
   packages: (state) => state.packages,
-  processes: (state) => state.processes
+  processes: (state) => state.processes,
+  os: (state) => state.os,
+  hardware: (state) => state.hardware
+
 
 }
 const actions = {
@@ -72,7 +77,21 @@ const actions = {
       // save list processes to store
       commit('GET_PROCCESSES_SUCCESS', processes.data.affected_items)
     })
-  }
+  },
+  getOS({ commit }, { id }) {
+    commit('GET_REQUEST')
+    return request.get(`/syscollector/${id}/os`).then((os) => {
+      // save list processes to store
+      commit('GET_PROCCESSES_SUCCESS', os.data.affected_items)
+    })
+  },
+  getHardware({ commit }, { id }) {
+    commit('GET_REQUEST')
+    return request.get(`/syscollector/${id}/hardware`).then((hardware) => {
+      // save list processes to store
+      commit('GET_PROCCESSES_SUCCESS', hardware.data.affected_items)
+    })
+  },
 }
 const mutations = {
   GET_REQUEST(state) {
@@ -105,7 +124,16 @@ const mutations = {
   GET_PROCCESSES_SUCCESS(state, processes) {
     state.processes = processes
     state.loading = false
-  }
+  },
+  GET_OS_SUCCESS(state, os) {
+    state.os = os
+    state.loading = false
+  },
+  GET_HARDWARE_SUCCESS(state, hardware) {
+    state.hardware = hardware
+    state.loading = false
+  },
+
 }
 
 export default {
