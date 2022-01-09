@@ -1,21 +1,40 @@
 import request from '@/util/request'
-
+// import axios from 'axios'
 const state = {
   agents: [],
   loading: false,
+  netiface: [],
+  stats: [],
+  rawElastic: {
+    index: 'wazuh-alerts-*',
+    body: {
+      query: {
+        bool: {
+          must: [],
+          filter: [],
+          should: [],
+          must_not: [],
+        },
+      },
+      aggs: {},
+      size: 0,
+    },
+  },
   netiface: [],
   ports: [],
   netaddr: [],
   hotfixes: [],
   packages: [],
   processes: [],
-  os: {},
-  hardware: {}
+  hardware: []
 }
 
 const getters = {
   loading: (state) => state.loading,
   agents: (state) => state.agents,
+  netiface: (state) => state.netiface,
+  stats: (state) => state.stats,
+  rawElastic: (state) => state.rawElastic,
   netiface: (state) => state.netiface,
   ports: (state) => state.ports,
   netaddr: (state) => state.netaddr,
@@ -36,11 +55,54 @@ const actions = {
       commit('GET_AGENTS_SUCCESS', agents.data.affected_items)
     })
   },
-  getListNetiface({ commit }, { id, limit, offset}) {
+  getListNetiface({ commit }, { id, limit, offset }) {
     commit('GET_REQUEST')
     return request.get(`/syscollector/${id}/netiface`, { limit, offset }).then((netiface) => {
       // save list netiface to store
       commit('GET_NETIFACE_SUCCESS', netiface.data.affected_items)
+    })
+  },
+  getListStats({ commit }, { id }) {
+    commit('GET_REQUEST')
+    return request.get(`/agents/${id}/stats/logcollector`).then((res) => {
+      console.log(res);
+      commit('GET_STATS_SUCCESS', res.data.affected_items[0])
+      // commit('GET_NETIFACE_SUCCESS', netiface.data.affected_items)
+    })
+  },
+  getInfoStats({ commit }, { id }) {
+    commit('GET_REQUEST')
+    return request.get(`/agents/${id}/stats/agent`).then((res) => {
+      if (!!res) {
+        if (!!res.data) {
+          if (!!res.data.affected_items[0]) {
+            commit('RESPONSE_OK')
+            return res.data.affected_items[0];
+          }
+        }
+      }
+    })
+  },
+  getNameOS({ commit }, { id }) {
+    commit('GET_REQUEST')
+    return request.get(`/agents`,
+      {
+        params: {
+          agents_list: id
+        }
+      }).then((res) => {
+        commit('RESPONSE_OK')
+        return res?.data?.affected_items[0]?.name;
+      })
+  },
+  getElastic({ commit }, inputRaw) {
+    commit('GET_REQUEST')
+    return request.post(`/elastic/alerts`,
+      inputRaw
+    ).then((res) => {
+      commit('RESPONSE_OK')
+
+      return res?.aggregations?.tactics?.buckets
     })
   },
   getListPorts({ commit }, { id, limit, offset }) {
@@ -78,24 +140,39 @@ const actions = {
       commit('GET_PROCCESSES_SUCCESS', processes.data.affected_items)
     })
   },
-  getOS({ commit }, { id }) {
+  async getHardware({ commit }, id) {
     commit('GET_REQUEST')
-    return request.get(`/syscollector/${id}/os`).then((os) => {
-      // save list processes to store
-      commit('GET_PROCCESSES_SUCCESS', os.data.affected_items)
-    })
+    // const apiuser = Buffer.from('ducdm:Admin@123', 'utf8').toString('base64');
+    // const basicAuth = 'Basic ' + btoa('ducdm:Admin@123');
+    const hardware = await request.get(`/syscollector/${id}/hardware`);
+    const os = await request.get(`/syscollector/${id}/os`);
+    // save hardware and os to store
+    commit('GET_HARDWARE_SUCCESS', [...hardware.data.affected_items, { osInfo: [...os.data.affected_items] }])
   },
-  getHardware({ commit }, { id }) {
+  async getAgentStatus() {
+    const status = await request.get('/agents/summary/status')
+    return status.data
+  },
+  async getAgentStat({ commit }, params) {
+    const agentStat = await request.get('agents/stats/distinct', { params: params })
+    return agentStat.data.affected_items;
+  },
+  async searchChart({ commit }, params) {
     commit('GET_REQUEST')
-    return request.get(`/syscollector/${id}/hardware`).then((hardware) => {
-      // save list processes to store
-      commit('GET_PROCCESSES_SUCCESS', hardware.data.affected_items)
-    })
-  },
+    const res = await request.post(`/internal/search/es`, params)
+    commit('RESPONSE_OK')
+    return res;
+  }
 }
 const mutations = {
   GET_REQUEST(state) {
     state.loading = true
+  },
+  RESPONSE_OK(state) {
+    state.loading = false;
+  },
+  RESPONSE_OK(state) {
+    state.loading = false;
   },
   GET_AGENTS_SUCCESS(state, agents) {
     state.agents = agents
@@ -105,6 +182,11 @@ const mutations = {
     state.netiface = netiface
     state.loading = false
   },
+  GET_STATS_SUCCESS(state, stats) {
+    state.stats = stats
+    state.loading = false
+  },
+
   GET_PORTS_SUCCESS(state, ports) {
     state.ports = ports
     state.loading = false
@@ -123,10 +205,6 @@ const mutations = {
   },
   GET_PROCCESSES_SUCCESS(state, processes) {
     state.processes = processes
-    state.loading = false
-  },
-  GET_OS_SUCCESS(state, os) {
-    state.os = os
     state.loading = false
   },
   GET_HARDWARE_SUCCESS(state, hardware) {

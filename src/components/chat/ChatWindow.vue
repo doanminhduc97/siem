@@ -77,7 +77,7 @@ export default {
     }
   },
   computed: {
-    getMessages () {
+    getMessages() {
       return this.$store.getters['chat/getMessages']
     },
     computeHeight() {

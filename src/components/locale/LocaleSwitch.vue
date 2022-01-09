@@ -29,9 +29,9 @@ export default {
     }
   },
   computed: {
-    getAvailableLanguages () {
+    getAvailableLanguages() {
       return this.$store.getters['app/getAvailableLanguages']
-    }
+    },
   },
   methods: {
     computeLocaleText(locale) {

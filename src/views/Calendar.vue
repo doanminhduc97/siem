@@ -76,9 +76,9 @@ export default {
     }
   },
   computed: {
-    getEvents () {
+    getEvents() {
       return this.$store.getters['event/getEvents']
-    }
+    },
   },
   methods: {
     viewDay({ date }) {

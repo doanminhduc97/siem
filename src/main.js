@@ -11,6 +11,9 @@ import i18n from './plugins/i18n'
 import '@mdi/font/css/materialdesignicons.css'
 import 'jodit/build/jodit.css'
 import VueApexCharts from 'vue-apexcharts'
+import excel from 'vue-excel-export'
+ 
+Vue.use(excel)
 Vue.use(VueApexCharts)
 
 Vue.component('apexchart', VueApexCharts)
@@ -24,3 +27,4 @@ const app = new Vue({
   render: (h) => h(App),
 })
 app.$mount('#app')
+ 

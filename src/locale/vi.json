@@ -117,5 +117,151 @@
         "icon": "Rating {0} of {1}"
       }
     }
+  },
+  "agent": {
+
+    "headerInterfaces": [
+      { "text": "Name", 
+        "value": "name" 
+      },
+      { "text": "MAC", 
+        "value": "mac" 
+      },
+      { "text": "State", 
+        "value": "state" 
+      },
+      { "text": "MTU", 
+        "value": "mtu" 
+      },
+      { "text": "Type", 
+        "value": "type" 
+      }
+    ],
+    "headerPorts": [
+      { 
+        "text": "Proccess", 
+        "value": "process" 
+      },
+      { 
+        "text": "Local IP", 
+        "value": "local.ip" 
+      },
+      { 
+        "text": "Local Port", 
+        "value": "local.port" 
+      },
+      { 
+        "text": "State", 
+        "value": "state" 
+      },
+      { 
+        "text": "Protocol", 
+        "value": "protocol" 
+      }
+    ],
+    "headerSettings": [
+      { 
+        "text": "Interface", 
+        "value": "iface" 
+      },
+      { 
+        "text": "Address", 
+        "value": "address" 
+      },
+      { 
+        "text": "Netmask", 
+        "value": "netmask" 
+      },
+      { 
+        "text": "Protocol", 
+        "value": "proto" 
+      },
+      { 
+        "text": "Broadcast", 
+        "value": "broadcast" 
+      }
+    ],
+    "headerWindowUpdates": [
+      { 
+        "text": "Update code", 
+        "value": "hotfix" 
+      }
+    ],
+    "headerPackages": [
+      { 
+        "text": "Name", 
+        "value": "name" 
+      },
+      { 
+        "text": "Architecture", 
+        "value": "architecture" 
+      },
+      { 
+        "text": "Version", 
+        "value": "version" 
+      },
+      { 
+        "text": "Vendor", 
+        "value": "vendor" 
+      }
+    ],
+    "headerProcesses": [
+      { 
+        "text": "Name", 
+        "value": "name" },
+      { 
+        "text": "PID", 
+        "value": "pid" 
+      },
+      { 
+        "text": "Parent PID", 
+        "value": "ppid" 
+      },
+      { 
+        "text": "VM size", 
+        "value": "vm_size" 
+      },
+      { 
+        "text": "Priority", 
+        "value": "priority" 
+      },
+      { 
+        "text": "NLWP", 
+        "value": "nlwp" 
+      },
+      { 
+        "text": "Command", 
+        "value": "cmd" 
+      }
+    ],
+    "headerPackagesObj": {
+      "Name": "name",
+      "Architecture": "architecture",
+      "Version": "version",
+      "Vendor": "vendor"
+    },
+    "headerProcessesObj": {
+      "Name": "name",
+      "PID": "pid",
+      "Parent PID": "ppid",
+      "VM size": "vm_size",
+      "Priority": "priority",
+      "NLWP": "nlwp",
+      "Command": "cmd"
+    },
+    "generateReport": "Generate report",
+    "alertMessage": "This agent is currently disconnected, the data may be outdated.",
+    "cores": "Cores",
+    "memory": "Memory",
+    "arch": "Arch",
+    "os": "OS",
+    "cpu": "CPU",
+    "lastScan": "Last scan",
+    "networkInterfaces": "Network interfaces",
+    "networkPorts": "Network ports",
+    "networkSettings": "Network Settings",
+    "windowsUpdates": "Windows updates",
+    "packages": "Packages",
+    "processes": "Processes"
   }
 }

@@ -38,7 +38,7 @@ const actions = {
     try {
       if (username === 'admin' && password === 'admin') {
         var token = ''
-        var apiuser = Buffer.from('wazuhapi:Admin@123', 'utf8').toString('base64');
+        var apiuser = Buffer.from('hoant:Admin@123', 'utf8').toString('base64');
         const res = await request.get('/security/user/authenticate', { headers: {
             'Authorization': 'Basic ' + apiuser
           }})

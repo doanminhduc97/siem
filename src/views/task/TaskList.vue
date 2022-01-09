@@ -164,12 +164,12 @@ export default {
     }
   },
   computed: {
-    getTaskStatus () {
+    getTaskStatus() {
       return this.$store.getters['task/getTaskStatus']
     },
-    getProjectList () {
+    getProjectList() {
       return this.$store.getters['task/getProjectList']
-    }
+    },
   },
   watch: {
     '$route.query': {

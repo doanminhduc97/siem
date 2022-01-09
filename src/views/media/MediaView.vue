@@ -218,7 +218,7 @@ export default {
   },
 
   computed: {
-    getIconByExt () {
+    getIconByExt() {
       return this.$store.getters['file/getIconByExt']
     },
     breadcrumbs() {

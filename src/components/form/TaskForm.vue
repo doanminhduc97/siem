@@ -30,10 +30,10 @@ export default {
     }
   },
   computed: {
-    getProjectList () {
+    getProjectList() {
       return this.$store.getters['task/getProjectList']
     },
-    getTaskStatus () {
+    getTaskStatus() {
       return this.$store.getters['task/getTaskStatus']
     },
     formTitle() {

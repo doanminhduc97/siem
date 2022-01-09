@@ -33,13 +33,13 @@ export default {
     return {}
   },
   computed: {
-    getChatUsers () {
+    getChatUsers() {
       return this.$store.getters['chat/getChatUsers']
     },
-    getAvatar () {
+    getAvatar() {
       return this.$store.getters['auth/getAvatar']
     },
-    getUsername () {
+    getUsername() {
       return this.$store.getters['auth/getUsername']
     },
   },

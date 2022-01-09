@@ -96,13 +96,13 @@ export default {
     }
   },
   computed: {
-    getAvatar () {
+    getAvatar() {
       return this.$store.getters['auth/getAvatar']
     },
-    getUsername () {
+    getUsername() {
       return this.$store.getters['auth/getUsername']
     },
-    getNotification () {
+    getNotification() {
       return this.$store.getters['app/getNotification']
     },
     breadcrumbs() {

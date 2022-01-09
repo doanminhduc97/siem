@@ -117,7 +117,7 @@ export default {
       },
       {
         icon: 'fullscreen_exit',
-        href: '#',
+        href: '/auth',
         title: 'Logout',
         click: (e) => {
           console.log(e)

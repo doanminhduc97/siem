@@ -121,6 +121,22 @@ export const protectedRoute = [
         name: 'agentInventory',
         component: () => import('@/views/agent/AgentInventory.vue'),
       },
+      {
+        path: '/agents-stats',
+        meta: {
+          title: 'Agent Stats',
+        },
+        name: 'agentStats',
+        component: () => import('@/views/agent/AgentStats.vue'),
+      },
+      {
+        path: '/agents-detail',
+        meta: {
+          title: 'Agent Detail',
+        },
+        name: 'agentDetail',
+        component: () => import('@/views/agent/AgentDetail.vue'),
+      },
       //element
       {
         path: '/element',

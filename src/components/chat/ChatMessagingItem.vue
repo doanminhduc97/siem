@@ -36,16 +36,16 @@ export default {
     return {}
   },
   computed: {
-    getAvatar () {
+    getAvatar() {
       return this.$store.getters['auth/getAvatar']
     },
-    getUsername () {
+    getUsername() {
       return this.$store.getters['auth/getUsername']
     },
-    getClientId () {
+    getClientId() {
       return this.$store.getters['chat/getClientId']
     },
-    getStatusByName () {
+    getStatusByName() {
       return this.$store.getters['chat/getStatusByName']
     },
     isMyOwn() {

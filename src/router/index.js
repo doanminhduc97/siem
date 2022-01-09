@@ -16,6 +16,7 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   NProgress.start()
   const token = store.getters['auth/getAccessToken']
+   
   if (to.name !== 'login') {
     // check token is exist
     if (token) {

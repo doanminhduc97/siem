@@ -56,10 +56,10 @@ export default {
     }
   },
   computed: {
-    getUsername () {
+    getUsername() {
       return this.$store.getters['auth/getUsername']
     },
-    getSocket () {
+    getSocket() {
       return this.$store.getters['chat/getSocket']
     },
     showDialog() {

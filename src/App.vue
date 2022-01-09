@@ -44,8 +44,8 @@ export default {
     }
   },
   computed: {
-    getSnackbar () {
-    return this.$store.getters['app/getSnackbar']
+    getSnackbar() {
+      return this.$store.getters['app/getSnackbar']
     },
     snackbar: {
       get() {

@@ -53,7 +53,7 @@ export default {
     }
   },
   computed: {
-    getTheme () {
+    getTheme() {
       return this.$store.getters['app/getTheme']
     },
     themeColorOptions() {
@@ -92,7 +92,7 @@ export default {
         return this.getTheme
       },
       set(val) {
-        this.$store.commit('app/setTheme', val, {root: true})
+        this.$store.commit('app/setTheme', val, { root: true })
       },
     },
   },

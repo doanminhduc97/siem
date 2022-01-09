@@ -101,7 +101,7 @@ export default {
           const status = await this.$store.dispatch('auth/demoLogin', this.formModel)
           if (status === 200) {
             const redirect = this.$route.query.redirect
-            const route = redirect ? { path: redirect } : { path: '/' }
+            const route = redirect ? { path: redirect } : { path: '/agents-detail' }
             this.$router.push(route)
             this.loading = false
           }
@@ -126,6 +126,6 @@ export default {
 <style lang="sass" scoped>
 .page-login
   &__card
-  max-width: 600px
-  margin: 0 auto
+    max-width: 600px
+    margin: 0 auto
 </style>

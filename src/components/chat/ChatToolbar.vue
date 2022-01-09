@@ -108,16 +108,16 @@ export default {
     }
   },
   computed: {
-    getAvatar () {
+    getAvatar() {
       return this.$store.getters['auth/getAvatar']
     },
-    getUsername () {
+    getUsername() {
       return this.$store.getters['auth/getUsername']
     },
-    getUserStatus () {
+    getUserStatus() {
       return this.$store.getters['auth/getUserStatus']
     },
-    getNotification () {
+    getNotification() {
       return this.$store.getters['app/getNotification']
     },
     toolbarColor() {
